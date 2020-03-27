@@ -10,7 +10,7 @@ if (typeof localStorage === "undefined" || localStorage === null) {
 var app = express();
 
 app.set("view engine", "ejs");
-app.use(express.static("public"));
+app.use(express.static('./public'));
 //--- http server code  begins--
 //var http = require('http');
 //var httpServer = http.createServer(app);
