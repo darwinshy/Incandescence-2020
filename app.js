@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const alert = require("alert-node");
-
+// const alert = require("alert-node");
+var methodOverride = require("method-override");
 if (typeof localStorage === "undefined" || localStorage === null) {
   var LocalStorage = require("node-localstorage").LocalStorage;
   localStorage = new LocalStorage("./scratch");
@@ -10,7 +10,9 @@ if (typeof localStorage === "undefined" || localStorage === null) {
 var app = express();
 
 app.set("view engine", "ejs");
-app.use(express.static('./public'));
+
+app.use(express.static("public"));
+app.use(methodOverride("_method"));
 //--- http server code  begins--
 //var http = require('http');
 //var httpServer = http.createServer(app);
@@ -33,6 +35,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // start of get request
 
 //ThunderMarch
+
+
+app.get("/", (req, res) => {
+  res.render("home");
+});
+
 var tmroutes = require("./thundermarch.js");
 app.use("/thundermarch", tmroutes);
 
@@ -87,10 +95,6 @@ app.get("/team", (req, res) => {
 app.get("/database", (req, res) => {
   var name = req.query.name || "NO ONE";
   res.render("database", { customer: name });
-});
-
-app.get("/", (req, res) => {
-  res.render("home");
 });
 
 app.get("/register", (req, res) => {
