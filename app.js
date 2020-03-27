@@ -36,8 +36,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //ThunderMarch
 
-
-app.get("/", (req, res) => {
+app.get("*", (req, res) => {
   res.render("home");
 });
 
@@ -122,5 +121,9 @@ app.post("/book", (req, res) => {
 });
 
 app.listen(process.env.PORT || 3000, function() {
-  console.log("SERVER STARTED!!");
+  console.log(
+    "Express server listening on port %d in %s mode",
+    this.address().port,
+    app.settings.env
+  );
 });

@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
+  "engines": {
+    "node": "12.13.1",
+    "npm": "6.12.1"
+  },
   "dependencies": {
     "@sendgrid/mail": "^6.4.0",
     "alert-node": "^2.1.1",
